@@ -304,6 +304,84 @@
     }
     .service-price small { font-size: .7rem; color: var(--muted); margin-left: .3rem; }
 
+    /* ── SERVICE WIDE ── */
+    .service-card--wide {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--border);
+    }
+    .service-card--wide .service-desc { max-width: 640px; }
+
+    /* ── WORKS ── */
+    #works { background: var(--bg); }
+    .works-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      max-width: 1040px;
+      margin-top: 3rem;
+    }
+    .work-card {
+      background: var(--bg2);
+      padding: 2.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .work-tag {
+      font-family: var(--mono); font-size: .58rem;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+      display: inline-block;
+      border: 1px solid rgba(201,169,110,.25);
+      padding: .25rem .7rem;
+    }
+    .work-title {
+      font-size: 1.15rem; font-weight: 400;
+      color: var(--white); margin-bottom: .85rem;
+      line-height: 1.4;
+    }
+    .work-desc { font-size: .83rem; color: var(--muted); line-height: 2; }
+    .work-flow {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      margin-top: 1.8rem;
+    }
+    .work-step {
+      font-family: var(--mono); font-size: .62rem;
+      letter-spacing: .1em; color: var(--muted2);
+      background: var(--bg3); padding: .3rem .8rem;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .work-step::before {
+      content: '→'; color: var(--accent); font-size: .7rem;
+    }
+    .work-step:first-child::before { display: none; }
+    .work-card--terminal {
+      background: #0a0e0a;
+      border-left: 2px solid rgba(74,222,128,.15);
+      font-family: var(--mono);
+    }
+    .terminal-bar {
+      display: flex; gap: .4rem; margin-bottom: 1.4rem;
+    }
+    .terminal-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .terminal-dot:nth-child(1) { background: #ff5f57; }
+    .terminal-dot:nth-child(2) { background: #febc2e; }
+    .terminal-dot:nth-child(3) { background: #28c840; }
+    .terminal-line {
+      font-size: .72rem; line-height: 2.1; color: #4a7c59;
+    }
+    .terminal-line .t-cmd { color: #4ade80; }
+    .terminal-line .t-ok  { color: #86efac; }
+    .terminal-line .t-num { color: #fde68a; }
+    .terminal-line .t-dim { color: #2d4a35; }
+    @media (max-width: 768px) {
+      .works-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── PROCESS ── */
     #process { background: var(--bg2); }
     .process-list { max-width: 720px; }
@@ -476,6 +554,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#works">Works</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -493,9 +572,9 @@
     <em>Tobira — Web Design Studio</em>
   </h1>
   <p class="hero-sub">
-    見た目だけでなく、伝わるかどうかを考えてつくります。<br>
-    美容院・工務店・飲食店・整骨院など、<br>
-    業種を問わず対応。相談・見積もり無料。
+    ウェブサイト制作から、AIを使った業務自動化まで。<br>
+    「見た目が良くて、仕組みで動く」をひとりで設計します。<br>
+    相談・見積もり無料。
   </p>
   <div class="hero-cta">
     <a href="#contact" class="btn btn-outline">
@@ -509,8 +588,8 @@
 <!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <div class="marquee-item">Web Design <span class="marquee-dot">●</span> Landing Page <span class="marquee-dot">●</span> Corporate Site <span class="marquee-dot">●</span> SEO対応 <span class="marquee-dot">●</span> スマホ対応 <span class="marquee-dot">●</span> 美容院 <span class="marquee-dot">●</span> 工務店 <span class="marquee-dot">●</span> 飲食店 <span class="marquee-dot">●</span> 整骨院 <span class="marquee-dot">●</span> 不動産 <span class="marquee-dot">●</span> 相談無料 <span class="marquee-dot">●</span></div>
-    <div class="marquee-item">Web Design <span class="marquee-dot">●</span> Landing Page <span class="marquee-dot">●</span> Corporate Site <span class="marquee-dot">●</span> SEO対応 <span class="marquee-dot">●</span> スマホ対応 <span class="marquee-dot">●</span> 美容院 <span class="marquee-dot">●</span> 工務店 <span class="marquee-dot">●</span> 飲食店 <span class="marquee-dot">●</span> 整骨院 <span class="marquee-dot">●</span> 不動産 <span class="marquee-dot">●</span> 相談無料 <span class="marquee-dot">●</span></div>
+    <div class="marquee-item">Web Design <span class="marquee-dot">●</span> Landing Page <span class="marquee-dot">●</span> Corporate Site <span class="marquee-dot">●</span> 業務自動化 <span class="marquee-dot">●</span> DX化支援 <span class="marquee-dot">●</span> AI活用 <span class="marquee-dot">●</span> SEO対応 <span class="marquee-dot">●</span> スマホ対応 <span class="marquee-dot">●</span> 美容院 <span class="marquee-dot">●</span> 工務店 <span class="marquee-dot">●</span> 飲食店 <span class="marquee-dot">●</span> 整骨院 <span class="marquee-dot">●</span> 不動産 <span class="marquee-dot">●</span> 相談無料 <span class="marquee-dot">●</span></div>
+    <div class="marquee-item">Web Design <span class="marquee-dot">●</span> Landing Page <span class="marquee-dot">●</span> Corporate Site <span class="marquee-dot">●</span> 業務自動化 <span class="marquee-dot">●</span> DX化支援 <span class="marquee-dot">●</span> AI活用 <span class="marquee-dot">●</span> SEO対応 <span class="marquee-dot">●</span> スマホ対応 <span class="marquee-dot">●</span> 美容院 <span class="marquee-dot">●</span> 工務店 <span class="marquee-dot">●</span> 飲食店 <span class="marquee-dot">●</span> 整骨院 <span class="marquee-dot">●</span> 不動産 <span class="marquee-dot">●</span> 相談無料 <span class="marquee-dot">●</span></div>
   </div>
 </div>
 
@@ -523,13 +602,13 @@
   <div class="about-grid fade-in">
     <div class="about-body">
       <p>
-        Tobiraは、<strong>ビジネスの「顔」となるウェブサイトを丁寧に設計する</strong>デザインスタジオです。
+        Tobiraは、<strong>ウェブサイト制作と業務自動化を軸にした</strong>デザイン＆テクノロジースタジオです。
       </p>
       <p>
         テンプレートを流用せず、業種・ターゲット・雰囲気をヒアリングした上で一から設計します。美容院・工務店・飲食店・整骨院など、業種は問いません。
       </p>
       <p>
-        慶應義塾大学 情報工学科で培った技術知識をベースに、エンジニアとデザイナーの両面から、<strong>見た目が良くて、検索にも強い</strong>サイトをお作りします。
+        慶應義塾大学 情報工学科で培った技術知識をベースに、<strong>見た目が良くて検索にも強い</strong>サイト制作に加え、AIを使った<strong>業務の自動化・DX化</strong>にも対応。「繰り返し作業を仕組みで回したい」というご相談も歓迎します。
       </p>
     </div>
     <div class="about-stats">
@@ -559,33 +638,93 @@
   </div>
   <div class="services-grid fade-in">
     <div class="service-card">
-      <div class="service-num">01 — Landing Page</div>
+      <div class="service-num">01 — Renewal</div>
+      <div class="service-name">サイトリニューアル</div>
+      <div class="service-desc">
+        古くなったサイトを現代的なデザインに刷新。スマホ対応・表示速度改善・SEO再設定をまとめて対応します。
+      </div>
+      <div class="service-price">¥49,800<small>〜</small></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02 — Landing Page</div>
       <div class="service-name">ランディングページ</div>
       <div class="service-desc">
         1ページ完結型。お問い合わせ・予約・集客に特化した構成で仕上げます。スマートフォン対応込み。
       </div>
-      <div class="service-price">¥50,000<small>〜</small></div>
+      <div class="service-price">¥80,000<small>〜</small></div>
     </div>
     <div class="service-card">
-      <div class="service-num">02 — Corporate Site</div>
+      <div class="service-num">03 — Corporate Site</div>
       <div class="service-name">コーポレートサイト</div>
       <div class="service-desc">
         複数ページの本格サイト。サービス・実績・アクセスなど必要な情報を整理してお作りします。
       </div>
-      <div class="service-price">¥80,000<small>〜</small></div>
+      <div class="service-price">¥150,000<small>〜</small></div>
     </div>
     <div class="service-card">
-      <div class="service-num">03 — Monthly Plan</div>
+      <div class="service-num">04 — Monthly Plan</div>
       <div class="service-name">月額管理プラン</div>
       <div class="service-desc">
         公開後の更新・修正・SEO改善を継続サポート。「作って終わり」にしません。
       </div>
-      <div class="service-price">¥3,000<small>〜/月</small></div>
+      <div class="service-price">¥1,980<small>〜/月</small></div>
+    </div>
+    <div class="service-card service-card--wide">
+      <div class="service-num">05 — Automation / DX</div>
+      <div class="service-name">業務自動化・DX化支援</div>
+      <div class="service-desc">
+        AIを使って繰り返し作業をゼロから自動化します。新規顧客の発掘・メール送信・データ収集・レポート生成など、業務フローを丸ごと設計します。<br>
+        <span style="color:var(--muted2);font-size:.78rem;">例）ウェブサイトのない企業を全国から自動発見 → AIが個別メールを生成 → 自動送信まで一気通貫で実装済み。</span>
+      </div>
+      <div class="service-price">¥要相談<small>（内容による）</small></div>
     </div>
   </div>
   <p style="margin-top:1.6rem;font-size:.76rem;color:var(--muted);font-family:var(--mono);">
     ＊ 料金はヒアリング後に正式にお見積もりします。まずはお気軽にご相談ください。
   </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="fade-in">
+    <p class="section-label">Works</p>
+    <h2 class="section-title">実際に動いているシステム</h2>
+  </div>
+  <div class="works-grid fade-in">
+    <div class="work-card">
+      <div class="work-tag">Automation · 稼働中</div>
+      <div class="work-title">営業メール全自動化システム</div>
+      <div class="work-desc">
+        ウェブサイトを持たない・または更新が止まっている小規模事業者を全国のGoogleマップから自動発見し、AIが店舗ごとに個別の営業メールを生成して自動送信するシステムを構築・運用中。
+      </div>
+      <div class="work-flow">
+        <div class="work-step">Google Maps スキャン</div>
+        <div class="work-step">ウェブサイト解析</div>
+        <div class="work-step">メールアドレス取得</div>
+        <div class="work-step">AI診断・文章生成</div>
+        <div class="work-step">品質チェック</div>
+        <div class="work-step">自動送信</div>
+      </div>
+    </div>
+    <div class="work-card work-card--terminal">
+      <div class="terminal-bar">
+        <div class="terminal-dot"></div>
+        <div class="terminal-dot"></div>
+        <div class="terminal-dot"></div>
+      </div>
+      <div class="terminal-line"><span class="t-dim">$ </span><span class="t-cmd">python pipeline.py --once</span></div>
+      <div class="terminal-line"><span class="t-dim">──────────────────────────────</span></div>
+      <div class="terminal-line"><span class="t-ok">[SCOUT]</span> 宮城県仙台市泉区 · 220件スキャン</div>
+      <div class="terminal-line"><span class="t-ok">[SCOUT]</span> Queued <span class="t-num">3</span> leads (outdated websites)</div>
+      <div class="terminal-line"><span class="t-ok">[DIAGNOSER]</span> GPT-4o · <span class="t-num">3</span>件 診断完了</div>
+      <div class="terminal-line"><span class="t-ok">[CHECKER]</span> Approved=<span class="t-num">2</span>, Blocked=<span class="t-num">1</span></div>
+      <div class="terminal-line"><span class="t-ok">[PITCHER]</span> Sent=<span class="t-num">2</span> · via Gmail SMTP</div>
+      <div class="terminal-line"><span class="t-dim">──────────────────────────────</span></div>
+      <div class="terminal-line"><span class="t-dim">毎朝6時 · cron · 全国順番に巡回中</span></div>
+    </div>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -695,6 +834,7 @@
           <option>ランディングページを作りたい</option>
           <option>コーポレートサイトを作りたい</option>
           <option>今のサイトをリニューアルしたい</option>
+          <option>業務を自動化したい（DX化）</option>
           <option>まずは相談だけしたい</option>
           <option>その他</option>
         </select>
