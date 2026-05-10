@@ -311,6 +311,55 @@
     }
     .service-card--wide .service-desc { max-width: 640px; }
 
+    /* ── SERVICE CATEGORIES (3-card) ── */
+    .service-categories {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); max-width: 1040px;
+    }
+    .service-cat {
+      background: var(--bg); padding: 3rem 2.6rem;
+      display: flex; flex-direction: column;
+      text-decoration: none; color: var(--text);
+      transition: background .25s; cursor: none;
+      position: relative; overflow: hidden;
+    }
+    .service-cat::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--accent);
+      transition: width .4s ease;
+    }
+    .service-cat:hover { background: var(--bg3); }
+    .service-cat:hover::after { width: 100%; }
+    .service-cat-label {
+      font-family: var(--mono); font-size: .6rem;
+      letter-spacing: .18em; color: var(--accent); margin-bottom: 2rem;
+    }
+    .service-cat-title {
+      font-size: 1.85rem; color: var(--white);
+      font-weight: 300; letter-spacing: -.025em;
+      margin-bottom: 1.2rem; line-height: 1.15;
+    }
+    .service-cat-desc {
+      font-size: .84rem; color: var(--muted);
+      line-height: 2; flex: 1; margin-bottom: 2.4rem;
+    }
+    .service-cat-foot {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 1.6rem; border-top: 1px solid var(--border);
+    }
+    .service-cat-price {
+      font-family: var(--mono); font-size: 1.1rem;
+      font-weight: 200; color: var(--white);
+    }
+    .service-cat-cta {
+      font-family: var(--mono); font-size: .62rem;
+      letter-spacing: .1em; color: var(--muted);
+      transition: color .2s, transform .2s;
+    }
+    .service-cat:hover .service-cat-cta { color: var(--accent); transform: translateX(4px); }
+    @media (max-width: 900px) { .service-categories { grid-template-columns: 1fr; } }
+
     /* ── WORKS ── */
     #works { background: var(--bg); }
     .works-grid {
@@ -554,7 +603,6 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#works">Works</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -636,134 +684,44 @@
     <p class="section-label">Services &amp; Pricing</p>
     <h2 class="section-title">サービス・料金</h2>
   </div>
-  <div class="services-grid fade-in">
-    <div class="service-card">
-      <div class="service-num">01 — Renewal</div>
-      <div class="service-name">サイトリニューアル</div>
-      <div class="service-desc">
-        古くなったサイトを現代的なデザインに刷新。スマホ対応・表示速度改善・SEO再設定をまとめて対応します。
+  <div class="service-categories fade-in">
+    <a href="services/web.html" class="service-cat">
+      <div class="service-cat-label">01 — Web Design</div>
+      <div class="service-cat-title">Web制作</div>
+      <div class="service-cat-desc">
+        ランディングページ・コーポレートサイト・サイトリニューアルまで。テンプレートを使わず、業種とターゲットに合わせて一から設計します。
       </div>
-      <div class="service-price">¥40,000<small>〜</small></div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">02 — Landing Page</div>
-      <div class="service-name">ランディングページ</div>
-      <div class="service-desc">
-        1ページ完結型。お問い合わせ・予約・集客に特化した構成で仕上げます。スマートフォン対応込み。
+      <div class="service-cat-foot">
+        <div class="service-cat-price">¥40,000〜</div>
+        <div class="service-cat-cta">詳しく見る →</div>
       </div>
-      <div class="service-price">¥50,000<small>〜</small></div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">03 — Corporate Site</div>
-      <div class="service-name">コーポレートサイト</div>
-      <div class="service-desc">
-        複数ページの本格サイト。サービス・実績・アクセスなど必要な情報を整理してお作りします。
+    </a>
+    <a href="services/security.html" class="service-cat">
+      <div class="service-cat-label">02 — Security</div>
+      <div class="service-cat-title">セキュリティ診断</div>
+      <div class="service-cat-desc">
+        外部からの設定確認から、ソースコードレベルの脆弱性分析まで。Ethereum・ZK系プロトコル・一般Webアプリの実績あり。
       </div>
-      <div class="service-price">¥80,000<small>〜</small></div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">04 — Monthly Plan</div>
-      <div class="service-name">月額管理プラン</div>
-      <div class="service-desc">
-        公開後の更新・修正・SEO改善を継続サポート。「作って終わり」にしません。
+      <div class="service-cat-foot">
+        <div class="service-cat-price">¥30,000〜</div>
+        <div class="service-cat-cta">詳しく見る →</div>
       </div>
-      <div class="service-price">¥2,000<small>〜/月</small></div>
-    </div>
-    <div class="service-card service-card--wide">
-      <div class="service-num">05 — Security Audit</div>
-      <div class="service-name">セキュリティ診断</div>
-      <div class="service-desc">
-        外部からの確認にとどまらず、コードレベルの深い脆弱性分析まで対応します。<br><br>
-
-        <strong style="color:var(--white);font-weight:400;">診断レベル 1 — 外部診断（¥30,000〜）</strong><br>
-        公開サイトを対象に、以下の項目を一つひとつ確認してレポートにまとめます。<br>
-        <span style="color:var(--muted2);">
-          TLS／HTTPS設定 ／ セキュリティヘッダー（HSTS・CSP・X-Frame-Options など）／
-          Cookie のセキュリティフラグ ／ 管理画面・APIエンドポイントの不要な露出 ／
-          CMSバージョンと既知の脆弱性 ／ 混在コンテンツ（Mixed Content）／
-          CORS 設定の誤り ／ エラーページからの情報漏洩 ／
-          ディレクトリリスティング ／ 不要な HTTP メソッドの許可 ／
-          レート制限の有無 ／ メール認証設定（SPF・DKIM・DMARC）
-        </span><br><br>
-
-        <strong style="color:var(--white);font-weight:400;">診断レベル 2 — コード精査（¥150,000〜）</strong><br>
-        ソースコードを受け取り、仕様と実装のズレを根拠に脆弱性を特定します。
-        単純なパターン照合ではなく、<strong style="color:var(--accent);">「この前提条件が満たされたとき、この処理が破綻する」</strong>という
-        構造的な証明として問題を提示します。誤検知が生じた場合は根本原因まで説明します。<br>
-        <span style="color:var(--muted2);">
-          認証・認可の抜け ／ SQLインジェクション ／ XSS ／ CSRF ／
-          パストラバーサル ／ コマンドインジェクション ／ 暗号化の実装ミス ／
-          セッション管理の問題 ／ ビジネスロジックの欠陥 ／
-          シークレット・APIキーのハードコーディング ／ 依存ライブラリの脆弱性
-        </span><br><br>
-
-        <strong style="color:var(--white);font-weight:400;">対応言語：</strong> Go / Rust / TypeScript / Python / Solidity / C / C++ / Nim ほか<br><br>
-        <span style="color:var(--muted2);font-size:.8rem;">
-          実績：Ethereumクライアント実装の脆弱性20件以上 ／ ZK系プロトコルの実装バグ複数件 ／
-          DeFiプロトコル ／ 一般Webアプリ・OSS。
-          既知の脆弱性15件が含まれるデータセットで全件検出を確認済み、加えて新規バグ4件を発見。
-        </span>
+    </a>
+    <a href="services/automation.html" class="service-cat">
+      <div class="service-cat-label">03 — Automation</div>
+      <div class="service-cat-title">業務自動化</div>
+      <div class="service-cat-desc">
+        AIを使って繰り返し作業を仕組みで回します。営業・請求・集計・問い合わせ対応など、業務フロー全体を設計・実装します。
       </div>
-      <div class="service-price">¥30,000<small>〜</small></div>
-    </div>
-    <div class="service-card service-card--wide">
-      <div class="service-num">06 — Automation / DX</div>
-      <div class="service-name">業務自動化・DX化支援</div>
-      <div class="service-desc">
-        AIを使って繰り返し作業をゼロから自動化します。業務フローを丸ごとヒアリングして、手が止まっている部分をシステムで回す仕組みを設計・実装します。<br><br>
-        <strong style="color:var(--white);font-weight:400;">対応できる自動化の例：</strong><br>
-        新規顧客の自動発掘・営業メール送信 ／ 請求書・経費の自動処理 ／ 売上・在庫データの自動集計とレポート生成 ／ 問い合わせ・予約の自動応答 ／ SNS・広告の定期更新 ／ その他、繰り返し発生している作業全般<br><br>
-        <span style="color:var(--muted2);font-size:.8rem;">実装例：ウェブサイトのない・古い企業を全国から自動発見 → AIが企業ごとの個別メールを生成 → 自動送信まで一気通貫で稼働中。</span>
+      <div class="service-cat-foot">
+        <div class="service-cat-price">要相談</div>
+        <div class="service-cat-cta">詳しく見る →</div>
       </div>
-      <div class="service-price">¥要相談<small>（内容による）</small></div>
-    </div>
+    </a>
   </div>
   <p style="margin-top:1.6rem;font-size:.76rem;color:var(--muted);font-family:var(--mono);">
-    ＊ 料金はヒアリング後に正式にお見積もりします。まずはお気軽にご相談ください。
+    ＊ 料金はヒアリング後に正式にお見積もりします。
   </p>
-</section>
-
-<div class="divider"></div>
-
-<!-- WORKS -->
-<section id="works">
-  <div class="fade-in">
-    <p class="section-label">Works</p>
-    <h2 class="section-title">実際に動いているシステム</h2>
-  </div>
-  <div class="works-grid fade-in">
-    <div class="work-card">
-      <div class="work-tag">Automation · 稼働中</div>
-      <div class="work-title">営業メール全自動化システム</div>
-      <div class="work-desc">
-        ウェブサイトを持たない・または更新が止まっている小規模事業者を全国のGoogleマップから自動発見し、AIが店舗ごとに個別の営業メールを生成して自動送信するシステムを構築・運用中。
-      </div>
-      <div class="work-flow">
-        <div class="work-step">Google Maps スキャン</div>
-        <div class="work-step">ウェブサイト解析</div>
-        <div class="work-step">メールアドレス取得</div>
-        <div class="work-step">AI診断・文章生成</div>
-        <div class="work-step">品質チェック</div>
-        <div class="work-step">自動送信</div>
-      </div>
-    </div>
-    <div class="work-card work-card--terminal">
-      <div class="terminal-bar">
-        <div class="terminal-dot"></div>
-        <div class="terminal-dot"></div>
-        <div class="terminal-dot"></div>
-      </div>
-      <div class="terminal-line"><span class="t-dim">$ </span><span class="t-cmd">python pipeline.py --once</span></div>
-      <div class="terminal-line"><span class="t-dim">──────────────────────────────</span></div>
-      <div class="terminal-line"><span class="t-ok">[SCOUT]</span> 宮城県仙台市泉区 · 220件スキャン</div>
-      <div class="terminal-line"><span class="t-ok">[SCOUT]</span> Queued <span class="t-num">3</span> leads (outdated websites)</div>
-      <div class="terminal-line"><span class="t-ok">[DIAGNOSER]</span> GPT-4o · <span class="t-num">3</span>件 診断完了</div>
-      <div class="terminal-line"><span class="t-ok">[CHECKER]</span> Approved=<span class="t-num">2</span>, Blocked=<span class="t-num">1</span></div>
-      <div class="terminal-line"><span class="t-ok">[PITCHER]</span> Sent=<span class="t-num">2</span> · via Gmail SMTP</div>
-      <div class="terminal-line"><span class="t-dim">──────────────────────────────</span></div>
-      <div class="terminal-line"><span class="t-dim">毎朝6時 · cron · 全国順番に巡回中</span></div>
-    </div>
-  </div>
 </section>
 
 <div class="divider"></div>

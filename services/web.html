@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web制作 — Tobira</title>
+  <meta name="description" content="ランディングページ・コーポレートサイト・リニューアルまで。テンプレートを使わず一から設計します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #090909; --bg2: #101010; --bg3: #161616;
+      --border: rgba(255,255,255,0.07);
+      --text: #d4d4d4; --muted: #787878; --muted2: #a0a0a0;
+      --accent: #c9a96e; --white: #f2f2f2;
+      --mono: 'Inter', sans-serif;
+      --sans: 'Noto Sans JP', 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased; cursor: none; }
+
+    .grain { position: fixed; inset: -200%; width: 500%; height: 500%; background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='1'/></svg>"); opacity: 0.028; pointer-events: none; z-index: 9998; animation: grain 7s steps(10) infinite; }
+    @keyframes grain {
+      0%{transform:translate(0,0)} 10%{transform:translate(-3%,-8%)} 25%{transform:translate(-12%,5%)}
+      37%{transform:translate(6%,-20%)} 50%{transform:translate(-4%,20%)} 62%{transform:translate(-12%,8%)}
+      75%{transform:translate(12%,-2%)} 87%{transform:translate(2%,14%)}
+    }
+    .cursor { position: fixed; width: 7px; height: 7px; background: var(--white); border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%,-50%); transition: width .18s, height .18s; mix-blend-mode: difference; }
+    .cursor-ring { position: fixed; width: 38px; height: 38px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%,-50%); transition: width .25s, height .25s, border-color .25s, left .08s linear, top .08s linear; }
+    .cursor.grow { width: 14px; height: 14px; }
+    .cursor-ring.grow { width: 58px; height: 58px; border-color: rgba(201,169,110,0.35); }
+    @media (max-width: 768px) { .cursor, .cursor-ring { display: none; } }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; transition: border-color .4s, background .4s; border-bottom: 1px solid transparent; }
+    nav.scrolled { background: rgba(9,9,9,.9); backdrop-filter: blur(18px); border-color: var(--border); }
+    .nav-logo { font-family: var(--mono); font-weight: 500; font-size: .88rem; letter-spacing: .04em; color: var(--white); text-decoration: none; display: flex; align-items: baseline; gap: .7rem; }
+    .nav-logo span { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); font-weight: 300; }
+    .nav-back { font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; color: var(--muted); text-decoration: none; transition: color .2s; display: flex; align-items: center; gap: .5rem; }
+    .nav-back:hover { color: var(--white); }
+    .nav-contact { font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; color: var(--muted); text-decoration: none; transition: color .2s; border: 1px solid var(--border); padding: .4rem 1rem; }
+    .nav-contact:hover { color: var(--white); border-color: rgba(255,255,255,.2); }
+    .nav-right { display: flex; align-items: center; gap: 1.8rem; }
+
+    section { padding: 8rem 3rem; }
+    .section-label { font-family: var(--mono); font-size: .65rem; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .section-title { font-size: clamp(1.9rem, 4vw, 3.1rem); font-weight: 300; color: var(--white); letter-spacing: -.025em; margin-bottom: 4rem; line-height: 1.15; }
+    .divider { width: 100%; height: 1px; background: var(--border); }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* HERO */
+    #hero { padding-top: 14rem; padding-bottom: 8rem; background: var(--bg2); border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { font-family: var(--mono); font-size: .62rem; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; }
+    .hero-title { font-size: clamp(2.8rem, 6vw, 5.2rem); font-weight: 200; color: var(--white); letter-spacing: -.035em; line-height: 1.05; margin-bottom: 2rem; }
+    .hero-title em { display: block; font-style: normal; font-family: var(--mono); font-size: clamp(.7rem, 1.2vw, .85rem); font-weight: 300; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-top: 1.6rem; }
+    .hero-sub { font-size: .94rem; color: var(--muted2); line-height: 2.1; max-width: 520px; margin-bottom: 3rem; }
+
+    /* SERVICES GRID */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); max-width: 1040px; }
+    .service-card { background: var(--bg); padding: 2.8rem; transition: background .3s; position: relative; overflow: hidden; }
+    .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--accent); transition: width .4s ease; }
+    .service-card:hover { background: var(--bg3); }
+    .service-card:hover::after { width: 100%; }
+    .service-num { font-family: var(--mono); font-size: .62rem; letter-spacing: .2em; color: var(--accent); margin-bottom: 1.5rem; }
+    .service-name { font-size: 1.05rem; font-weight: 400; color: var(--white); margin-bottom: .75rem; }
+    .service-desc { font-size: .83rem; color: var(--muted); line-height: 1.9; margin-bottom: 2.2rem; }
+    .service-price { font-family: var(--mono); font-size: 1.45rem; font-weight: 200; color: var(--white); }
+    .service-price small { font-size: .7rem; color: var(--muted); margin-left: .3rem; }
+    .service-card--wide { grid-column: 1 / -1; border-top: 1px solid var(--border); }
+
+    /* PROCESS */
+    #process { background: var(--bg2); }
+    .process-list { max-width: 720px; }
+    .process-item { display: grid; grid-template-columns: 3.2rem 1fr; gap: 2rem; padding: 2.2rem 0; border-bottom: 1px solid var(--border); }
+    .process-num { font-family: var(--mono); font-size: .66rem; color: var(--accent); letter-spacing: .12em; padding-top: .1rem; }
+    .process-title { font-size: .95rem; color: var(--white); font-weight: 400; margin-bottom: .5rem; }
+    .process-desc { font-size: .83rem; color: var(--muted); line-height: 1.95; }
+
+    /* CONTACT CTA */
+    .cta-section { background: var(--bg3); text-align: center; padding: 7rem 3rem; }
+    .cta-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 300; color: var(--white); letter-spacing: -.02em; margin-bottom: 1.2rem; }
+    .cta-sub { font-size: .87rem; color: var(--muted); margin-bottom: 2.8rem; }
+    .btn-cta { display: inline-flex; align-items: center; gap: .9rem; padding: 1.05rem 2.7rem; background: var(--white); color: var(--bg); font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; transition: background .25s, transform .2s; }
+    .btn-cta:hover { background: var(--accent); transform: translateY(-2px); }
+
+    footer { padding: 2.2rem 3rem 1.2rem; border-top: 1px solid var(--border); }
+    .footer-main { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.4rem; }
+    .footer-brand { font-family: var(--mono); font-size: .88rem; font-weight: 500; color: var(--white); }
+    .footer-links { display: flex; gap: 1.7rem; }
+    .footer-links a { font-family: var(--mono); font-size: .65rem; letter-spacing: .11em; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-family: var(--mono); font-size: .58rem; color: #282828; }
+
+    @media (max-width: 768px) {
+      section { padding: 6rem 1.5rem; }
+      nav { padding: 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-item { grid-template-columns: 2.5rem 1fr; gap: 1.2rem; }
+      footer { padding: 2rem 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a class="nav-logo" href="/">Tobira<span>Web Design</span></a>
+  <div class="nav-right">
+    <a class="nav-back" href="/">← サービス一覧</a>
+    <a class="nav-contact" href="/#contact">相談する</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">Services / Web Design</div>
+  <h1 class="hero-title">
+    Web制作
+    <em>Landing Page · Corporate Site · Renewal</em>
+  </h1>
+  <p class="hero-sub">
+    ランディングページからコーポレートサイトまで。テンプレートは使わず、業種・ターゲット・雰囲気をヒアリングした上で一から設計します。
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="fade-in">
+    <p class="section-label">Services &amp; Pricing</p>
+    <h2 class="section-title">プランと料金</h2>
+  </div>
+  <div class="services-grid fade-in">
+    <div class="service-card">
+      <div class="service-num">01 — Renewal</div>
+      <div class="service-name">サイトリニューアル</div>
+      <div class="service-desc">
+        古くなったサイトを現代的なデザインに刷新。スマホ対応・表示速度改善・SEO再設定をまとめて対応します。既存ドメイン・ページ数に応じてお見積もりします。
+      </div>
+      <div class="service-price">¥40,000<small>〜</small></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02 — Landing Page</div>
+      <div class="service-name">ランディングページ</div>
+      <div class="service-desc">
+        1ページ完結型。お問い合わせ・予約・集客に特化した構成で仕上げます。スマートフォン対応・Web3Formsによるフォーム設置込み。
+      </div>
+      <div class="service-price">¥50,000<small>〜</small></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03 — Corporate Site</div>
+      <div class="service-name">コーポレートサイト</div>
+      <div class="service-desc">
+        複数ページの本格サイト。サービス・実績・アクセスなど必要な情報を整理してお作りします。CMS（更新機能）の設置も対応可能です。
+      </div>
+      <div class="service-price">¥80,000<small>〜</small></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04 — Monthly Plan</div>
+      <div class="service-name">月額管理プラン</div>
+      <div class="service-desc">
+        公開後の文章更新・画像差し替え・SEO改善を継続サポート。「作って終わり」にしません。セキュリティアップデートも含みます。
+      </div>
+      <div class="service-price">¥2,000<small>〜/月</small></div>
+    </div>
+  </div>
+  <p style="margin-top:1.6rem;font-size:.76rem;color:var(--muted);font-family:'Inter',sans-serif;">
+    ＊ 料金はヒアリング後に正式にお見積もりします。まずはお気軽にご相談ください。
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="fade-in">
+    <p class="section-label">Process</p>
+    <h2 class="section-title">制作の流れ</h2>
+  </div>
+  <div class="process-list fade-in">
+    <div class="process-item">
+      <div class="process-num">01</div>
+      <div>
+        <div class="process-title">無料ヒアリング</div>
+        <div class="process-desc">Zoom・LINE・メール・DMなどご都合の良い方法でお話を聞かせていただきます。業種・ターゲット・ご要望をもとに方向性を決めます。費用はかかりません。</div>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-num">02</div>
+      <div>
+        <div class="process-title">お見積もり・ご契約</div>
+        <div class="process-desc">ヒアリング内容をもとに正式なお見積もりをご提示。内容にご納得いただいた上でご契約いただきます。契約時に制作費の50%をお振込みいただきます。</div>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-num">03</div>
+      <div>
+        <div class="process-title">デザイン・制作</div>
+        <div class="process-desc">デザイン案をご確認いただきながら制作を進めます。修正は2回まで無償で対応します。標準納期は2週間です。</div>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-num">04</div>
+      <div>
+        <div class="process-title">公開・納品</div>
+        <div class="process-desc">動作確認・SEO設定を行い公開。残り50%のお支払い確認後に納品となります。公開後1ヶ月間は無償サポートつき。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-title">まずは無料で相談する</div>
+  <div class="cta-sub">「何をどうすれば良いかわからない」というご相談も大歓迎です。通常2営業日以内に返信します。</div>
+  <a href="/#contact" class="btn-cta">
+    相談フォームへ →
+  </a>
+</div>
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">Tobira</div>
+    <div class="footer-links">
+      <a href="/">Top</a>
+      <a href="mailto:tobira.webdesign@gmail.com">Email</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Tobira</div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+    ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('grow'); ring.classList.add('grow'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('grow'); ring.classList.remove('grow'); });
+  });
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
