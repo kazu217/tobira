@@ -674,14 +674,30 @@
       <div class="service-name">セキュリティ診断</div>
       <div class="service-desc">
         外部からの確認にとどまらず、コードレベルの深い脆弱性分析まで対応します。<br><br>
+
         <strong style="color:var(--white);font-weight:400;">診断レベル 1 — 外部診断（¥30,000〜）</strong><br>
-        公開サイトに対してHTTPS設定・セキュリティヘッダー・CMSバージョン・管理画面の露出などを
-        一つひとつ確認し、問題点をレポートとしてまとめます。<br><br>
+        公開サイトを対象に、以下の項目を一つひとつ確認してレポートにまとめます。<br>
+        <span style="color:var(--muted2);">
+          TLS／HTTPS設定 ／ セキュリティヘッダー（HSTS・CSP・X-Frame-Options など）／
+          Cookie のセキュリティフラグ ／ 管理画面・APIエンドポイントの不要な露出 ／
+          CMSバージョンと既知の脆弱性 ／ 混在コンテンツ（Mixed Content）／
+          CORS 設定の誤り ／ エラーページからの情報漏洩 ／
+          ディレクトリリスティング ／ 不要な HTTP メソッドの許可 ／
+          レート制限の有無 ／ メール認証設定（SPF・DKIM・DMARC）
+        </span><br><br>
+
         <strong style="color:var(--white);font-weight:400;">診断レベル 2 — コード精査（¥150,000〜）</strong><br>
         ソースコードを受け取り、仕様と実装のズレを根拠に脆弱性を特定します。
         単純なパターン照合ではなく、<strong style="color:var(--accent);">「この前提条件が満たされたとき、この処理が破綻する」</strong>という
-        構造的な証明として問題を提示します。誤検知が生じた場合は根本原因まで説明します。<br><br>
-        <strong style="color:var(--white);font-weight:400;">対応言語：</strong> Go / Rust / TypeScript / Python / C / C++ / Nim ほか多言語対応<br><br>
+        構造的な証明として問題を提示します。誤検知が生じた場合は根本原因まで説明します。<br>
+        <span style="color:var(--muted2);">
+          認証・認可の抜け ／ SQLインジェクション ／ XSS ／ CSRF ／
+          パストラバーサル ／ コマンドインジェクション ／ 暗号化の実装ミス ／
+          セッション管理の問題 ／ ビジネスロジックの欠陥 ／
+          シークレット・APIキーのハードコーディング ／ 依存ライブラリの脆弱性
+        </span><br><br>
+
+        <strong style="color:var(--white);font-weight:400;">対応言語：</strong> Go / Rust / TypeScript / Python / Solidity / C / C++ / Nim ほか<br><br>
         <span style="color:var(--muted2);font-size:.8rem;">
           実績：Ethereumクライアント実装の脆弱性20件以上 ／ ZK系プロトコルの実装バグ複数件 ／
           DeFiプロトコル ／ 一般Webアプリ・OSS。
