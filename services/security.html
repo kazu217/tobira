@@ -80,6 +80,15 @@
     .lang-list { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
     .lang-tag { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; color: var(--muted2); border: 1px solid var(--border); padding: .3rem .9rem; }
 
+    /* GUARANTEE */
+    .guarantee { background: var(--bg2); border: 1px solid rgba(201,169,110,.2); padding: 3rem 3.2rem; max-width: 1040px; display: flex; gap: 3rem; align-items: flex-start; }
+    .guarantee-icon { font-family: var(--mono); font-size: 2.2rem; font-weight: 200; color: var(--accent); flex-shrink: 0; line-height: 1; }
+    .guarantee-body {}
+    .guarantee-title { font-size: 1.1rem; font-weight: 400; color: var(--white); margin-bottom: .7rem; }
+    .guarantee-desc { font-size: .84rem; color: var(--muted2); line-height: 2; }
+    .guarantee-note { font-size: .75rem; color: var(--muted); margin-top: 1rem; }
+    @media (max-width: 768px) { .guarantee { flex-direction: column; gap: 1.5rem; padding: 2rem 1.5rem; } }
+
     /* CTA */
     .cta-section { background: var(--bg3); text-align: center; padding: 7rem 3rem; }
     .cta-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 300; color: var(--white); letter-spacing: -.02em; margin-bottom: 1.2rem; }
@@ -182,6 +191,27 @@
         <li>依存ライブラリの脆弱性</li>
         <li>整数オーバーフロー・型変換の誤り（Solidity / C / Rust）</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GUARANTEE -->
+<section id="guarantee">
+  <div class="fade-in">
+    <p class="section-label">Guarantee</p>
+    <h2 class="section-title">返金保証</h2>
+  </div>
+  <div class="guarantee fade-in">
+    <div class="guarantee-icon">¥0</div>
+    <div class="guarantee-body">
+      <div class="guarantee-title">問題が見つからなければ、全額返金します</div>
+      <div class="guarantee-desc">
+        診断の結果、指摘事項がゼロだった場合は費用をいただきません。「とりあえず診てほしい」という状況でも、安心してご依頼いただけます。<br><br>
+        問題が見つかった場合のみ費用が発生し、レポートと修正方法をご提示します。修正の実施まで含めて対応することも可能です。
+      </div>
+      <div class="guarantee-note">＊ 返金はご依頼から診断完了までのすべての費用が対象です。修正作業を別途ご依頼いただいた場合の費用は対象外となります。</div>
     </div>
   </div>
 </section>
