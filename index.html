@@ -669,11 +669,24 @@
       </div>
       <div class="service-price">¥2,000<small>〜/月</small></div>
     </div>
-    <div class="service-card">
+    <div class="service-card service-card--wide">
       <div class="service-num">05 — Security Audit</div>
       <div class="service-name">セキュリティ診断</div>
       <div class="service-desc">
-        公開サイトをスキャンし、HTTPS未対応・古いCMSバージョン・セキュリティヘッダー不備などを検出してレポートします。発見した問題の修正まで一括対応可能です。
+        外部からの確認にとどまらず、コードレベルの深い脆弱性分析まで対応します。<br><br>
+        <strong style="color:var(--white);font-weight:400;">診断レベル 1 — 外部診断（¥30,000〜）</strong><br>
+        公開サイトに対してHTTPS設定・セキュリティヘッダー・CMSバージョン・管理画面の露出などを
+        一つひとつ確認し、問題点をレポートとしてまとめます。<br><br>
+        <strong style="color:var(--white);font-weight:400;">診断レベル 2 — コード精査（¥150,000〜）</strong><br>
+        ソースコードを受け取り、仕様と実装のズレを根拠に脆弱性を特定します。
+        単純なパターン照合ではなく、<strong style="color:var(--accent);">「この前提条件が満たされたとき、この処理が破綻する」</strong>という
+        構造的な証明として問題を提示します。誤検知が生じた場合は根本原因まで説明します。<br><br>
+        <strong style="color:var(--white);font-weight:400;">対応言語：</strong> Go / Rust / TypeScript / Python / C / C++ / Nim ほか多言語対応<br><br>
+        <span style="color:var(--muted2);font-size:.8rem;">
+          実績：Ethereumクライアント実装の脆弱性20件以上 ／ ZK系プロトコルの実装バグ複数件 ／
+          DeFiプロトコル ／ 一般Webアプリ・OSS。
+          既知の脆弱性15件が含まれるデータセットで全件検出を確認済み、加えて新規バグ4件を発見。
+        </span>
       </div>
       <div class="service-price">¥30,000<small>〜</small></div>
     </div>
