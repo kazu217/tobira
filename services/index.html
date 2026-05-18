@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Tobira</title>
+  <meta name="description" content="TobiraのサービスはWeb制作・セキュリティ診断・業務自動化の3つ。相談・見積もり無料。">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#080808;--bg2:#101010;--bg3:#1a1a1a;
+      --border:rgba(255,255,255,0.10);
+      --text:#e0e0e0;--muted:#909090;--muted2:#b8b8b8;
+      --accent:#d4aa6a;--white:#f5f5f5;
+      --mono:'Inter',sans-serif;--sans:'Noto Sans JP','Inter',sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;cursor:none; }
+    .grain { position:fixed;inset:-200%;width:500%;height:500%;background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='1'/></svg>");opacity:0.022;pointer-events:none;z-index:9998;animation:grain 7s steps(10) infinite; }
+    @keyframes grain { 0%{transform:translate(0,0)}10%{transform:translate(-3%,-8%)}25%{transform:translate(-12%,5%)}37%{transform:translate(6%,-20%)}50%{transform:translate(-4%,20%)}62%{transform:translate(-12%,8%)}75%{transform:translate(12%,-2%)}87%{transform:translate(2%,14%)} }
+    .cursor { position:fixed;width:7px;height:7px;background:var(--white);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .18s,height .18s;mix-blend-mode:difference; }
+    .cursor-ring { position:fixed;width:38px;height:38px;border:1px solid rgba(255,255,255,0.22);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s,left .08s linear,top .08s linear; }
+    .cursor.grow { width:14px;height:14px; } .cursor-ring.grow { width:58px;height:58px;border-color:rgba(212,170,106,0.4); }
+    @media (max-width:768px) { .cursor,.cursor-ring { display:none; } }
+    nav { position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3rem;transition:border-color .4s,background .4s;border-bottom:1px solid transparent; }
+    nav.scrolled { background:rgba(8,8,8,.92);backdrop-filter:blur(20px);border-color:var(--border); }
+    .nav-logo { font-family:var(--mono);font-size:1.05rem;font-weight:500;letter-spacing:.06em;color:var(--white);text-decoration:none; }
+    .nav-logo span { font-size:.58rem;font-weight:300;letter-spacing:.22em;color:var(--muted);margin-left:.7rem;text-transform:uppercase;vertical-align:middle; }
+    .nav-links { display:flex;gap:2.2rem;list-style:none; }
+    .nav-links a { font-size:.73rem;letter-spacing:.13em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s; }
+    .nav-links a:hover,.nav-links a.active { color:var(--white); }
+    @media (max-width:768px) { nav { padding:1.2rem 1.5rem; } .nav-links { display:none; } }
+
+    section { padding:10rem 3rem 8rem; }
+    .section-label { font-family:var(--mono);font-size:.67rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);margin-bottom:1.1rem; }
+    .section-title { font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--white);letter-spacing:-.025em;margin-bottom:1.2rem;line-height:1.15; }
+    .section-sub { font-size:.95rem;color:var(--muted2);margin-bottom:4rem;line-height:2; }
+    .fade-in { opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease; }
+    .fade-in.visible { opacity:1;transform:none; }
+
+    .services-hub { display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);border:1px solid var(--border);max-width:1040px; }
+    .service-row {
+      background:var(--bg2);display:grid;grid-template-columns:2.5rem 1fr auto;
+      align-items:center;gap:3rem;padding:3rem 3.2rem;
+      text-decoration:none;color:var(--text);
+      transition:background .25s;position:relative;overflow:hidden;
+    }
+    .service-row::after { content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width .4s ease; }
+    .service-row:hover { background:var(--bg3); }
+    .service-row:hover::after { width:100%; }
+    .service-row-num { font-family:var(--mono);font-size:.75rem;color:var(--accent);letter-spacing:.14em; }
+    .service-row-body {}
+    .service-row-title { font-size:1.55rem;font-weight:300;color:var(--white);letter-spacing:-.02em;margin-bottom:.7rem; }
+    .service-row-desc { font-size:.9rem;color:var(--muted2);line-height:2; }
+    .service-row-right { text-align:right;flex-shrink:0; }
+    .service-row-price { font-family:var(--mono);font-size:1.3rem;font-weight:200;color:var(--white);white-space:nowrap; }
+    .service-row-note { font-size:.68rem;color:var(--accent);letter-spacing:.06em;margin-top:.35rem; }
+    .service-row-cta { font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;color:var(--muted);margin-top:1rem;transition:color .2s,transform .2s;display:block; }
+    .service-row:hover .service-row-cta { color:var(--accent);transform:translateX(4px); }
+    @media (max-width:768px) {
+      .service-row { grid-template-columns:1fr;gap:1.2rem;padding:2.2rem 1.8rem; }
+      .service-row-right { text-align:left; }
+      section { padding:7rem 1.5rem 5rem; }
+    }
+
+    .pricing-note { max-width:1040px;margin-top:2rem;padding:1.4rem 1.6rem;border-left:2px solid var(--accent);background:rgba(212,170,106,.06); }
+    .pricing-note-title { font-size:.97rem;color:var(--white);margin-bottom:.5rem;line-height:1.7; }
+    .pricing-note-text { font-size:.85rem;color:var(--muted2);line-height:1.95; }
+
+    footer { padding:2.4rem 3rem 1.4rem;border-top:1px solid var(--border);background:var(--bg2); }
+    .footer-main { display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1.4rem; }
+    .footer-brand { font-family:var(--mono);font-size:.9rem;font-weight:500;color:var(--white); }
+    .footer-links { display:flex;gap:1.8rem;align-items:center;flex-wrap:wrap; }
+    .footer-links a { font-family:var(--mono);font-size:.67rem;letter-spacing:.11em;color:var(--muted);text-decoration:none;transition:color .2s; }
+    .footer-links a:hover { color:var(--white); }
+    .footer-copy { font-family:var(--mono);font-size:.58rem;color:#333;margin-top:.5rem; }
+    @media (max-width:768px) { footer { padding:2rem 1.5rem 1rem; } .footer-main { flex-direction:column;align-items:flex-start; } }
+  </style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav id="nav">
+  <a class="nav-logo" href="/">Tobira<span>Web Design</span></a>
+  <ul class="nav-links">
+    <li><a href="../about.html">About</a></li>
+    <li><a href="index.html" class="active">Services</a></li>
+    <li><a href="../works.html">Works</a></li>
+    <li><a href="../process.html">Process</a></li>
+    <li><a href="../faq.html">FAQ</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+</nav>
+<section>
+  <div class="fade-in">
+    <p class="section-label">Services &amp; Pricing</p>
+    <h2 class="section-title">サービス・料金</h2>
+    <p class="section-sub">Web制作・セキュリティ診断・業務自動化の3つをご提供しています。<br>相談・お見積もりはすべて無料です。</p>
+  </div>
+  <div class="services-hub fade-in">
+    <a href="web.html" class="service-row">
+      <div class="service-row-num">01</div>
+      <div class="service-row-body">
+        <div class="service-row-title">Web制作</div>
+        <div class="service-row-desc">ランディングページ・コーポレートサイト・サイトリニューアルまで。テンプレートを使わず、業種とターゲットに合わせて一から設計します。スマホ対応・SEO対応も全案件標準。</div>
+      </div>
+      <div class="service-row-right">
+        <div class="service-row-price">¥40,000〜</div>
+        <div class="service-row-note">LP・1ページサイト（開業初期価格）</div>
+        <span class="service-row-cta">詳しく見る →</span>
+      </div>
+    </a>
+    <a href="security.html" class="service-row">
+      <div class="service-row-num">02</div>
+      <div class="service-row-body">
+        <div class="service-row-title">セキュリティ診断</div>
+        <div class="service-row-desc">外部からの設定確認から、ソースコードレベルの脆弱性分析まで。Ethereum・ZK系プロトコル・一般Webアプリの実績あり。問題が見つからなければ全額返金。</div>
+      </div>
+      <div class="service-row-right">
+        <div class="service-row-price">¥30,000〜</div>
+        <div class="service-row-note">相場より抑えた価格</div>
+        <span class="service-row-cta">詳しく見る →</span>
+      </div>
+    </a>
+    <a href="automation.html" class="service-row">
+      <div class="service-row-num">03</div>
+      <div class="service-row-body">
+        <div class="service-row-title">業務自動化</div>
+        <div class="service-row-desc">繰り返し作業を仕組みで回します。営業・請求・集計・問い合わせ対応など、業務フロー全体を設計・実装します。小さなツールから業務システム全体まで対応。</div>
+      </div>
+      <div class="service-row-right">
+        <div class="service-row-price">要相談</div>
+        <div class="service-row-note">小さく始められます</div>
+        <span class="service-row-cta">詳しく見る →</span>
+      </div>
+    </a>
+  </div>
+  <div class="pricing-note fade-in">
+    <div class="pricing-note-title">始めたばかりの今だけ、価格はかなり抑えています。</div>
+    <div class="pricing-note-text">実績づくりの期間として、一般的な相場より低めにお受けしています。他社見積もりがあれば内容を確認した上で値下げも検討します。まずは気軽にご相談ください。</div>
+  </div>
+</section>
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">Tobira</div>
+    <div class="footer-links">
+      <a href="mailto:tobira.webdesign@gmail.com">Email</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy.html">プライバシーポリシー</a>
+      <a href="../tokushoho.html">特定商取引法</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Tobira — 藤原 一樹</div>
+</footer>
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{ nav.classList.toggle('scrolled',window.scrollY>40); });
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.08});
+  document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  if(cursor&&ring){let mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});(function loop(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;cursor.style.left=mx+'px';cursor.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.classList.add('grow');ring.classList.add('grow');});el.addEventListener('mouseleave',()=>{cursor.classList.remove('grow');ring.classList.remove('grow');});});document.addEventListener('mouseleave',()=>{cursor.style.opacity='0';ring.style.opacity='0';});document.addEventListener('mouseenter',()=>{cursor.style.opacity='1';ring.style.opacity='1';});}
+</script>
+</body>
+</html>
