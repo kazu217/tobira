@@ -259,13 +259,12 @@
     .about-body { font-size: 1rem; color: #c0c0c0; line-height: 2.2; }
     .about-body p + p { margin-top: 1.5rem; }
     .about-body strong { color: var(--white); font-weight: 400; }
-    .about-stats { display: flex; flex-direction: column; }
-    .stat-item { border-top: 1px solid var(--border); padding: 1.8rem 0; }
-    .stat-num {
-      font-family: var(--mono); font-size: 2.5rem; font-weight: 200;
-      color: var(--white); letter-spacing: -.04em; line-height: 1; margin-bottom: .4rem;
-    }
-    .stat-label { font-size: .76rem; color: var(--muted); letter-spacing: .07em; }
+    .about-note { border-top: 1px solid var(--border); padding-top: 1.5rem; }
+    .about-note-title { font-size: 1.05rem; color: var(--white); font-weight: 500; margin-bottom: 1.25rem; }
+    .about-note-list { display: grid; gap: 1.05rem; }
+    .about-note-item { border-left: 2px solid var(--accent); padding-left: 1rem; }
+    .about-note-key { font-size: .8rem; color: var(--white); font-weight: 500; margin-bottom: .25rem; }
+    .about-note-text { font-size: .8rem; color: var(--muted); line-height: 1.8; }
 
     /* ── SERVICES ── */
     #services { background: var(--bg); }
@@ -541,7 +540,7 @@
       .service-cat { cursor: pointer; }
     }
   </style>
-  <link rel="stylesheet" href="/tobira-theme.css">
+  <link rel="stylesheet" href="tobira-theme.css">
 </head>
 <body>
 
@@ -588,8 +587,8 @@
 <!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <div class="marquee-item">Web Design <span class="marquee-dot">●</span> Landing Page <span class="marquee-dot">●</span> Corporate Site <span class="marquee-dot">●</span> 業務自動化 <span class="marquee-dot">●</span> DX化支援 <span class="marquee-dot">●</span> セキュリティ診断 <span class="marquee-dot">●</span> SEO対応 <span class="marquee-dot">●</span> スマホ対応 <span class="marquee-dot">●</span> 美容院 <span class="marquee-dot">●</span> 工務店 <span class="marquee-dot">●</span> 飲食店 <span class="marquee-dot">●</span> 整骨院 <span class="marquee-dot">●</span> 不動産 <span class="marquee-dot">●</span> 相談無料 <span class="marquee-dot">●</span></div>
-    <div class="marquee-item">Web Design <span class="marquee-dot">●</span> Landing Page <span class="marquee-dot">●</span> Corporate Site <span class="marquee-dot">●</span> 業務自動化 <span class="marquee-dot">●</span> DX化支援 <span class="marquee-dot">●</span> セキュリティ診断 <span class="marquee-dot">●</span> SEO対応 <span class="marquee-dot">●</span> スマホ対応 <span class="marquee-dot">●</span> 美容院 <span class="marquee-dot">●</span> 工務店 <span class="marquee-dot">●</span> 飲食店 <span class="marquee-dot">●</span> 整骨院 <span class="marquee-dot">●</span> 不動産 <span class="marquee-dot">●</span> 相談無料 <span class="marquee-dot">●</span></div>
+    <div class="marquee-item">Web Design <span class="marquee-dot">●</span> Landing Page <span class="marquee-dot">●</span> Corporate Site <span class="marquee-dot">●</span> 業務自動化 <span class="marquee-dot">●</span> DX化支援 <span class="marquee-dot">●</span> セキュリティ診断 <span class="marquee-dot">●</span> SEO対応 <span class="marquee-dot">●</span> オーダーメイド設計 <span class="marquee-dot">●</span> 美容院 <span class="marquee-dot">●</span> 工務店 <span class="marquee-dot">●</span> 飲食店 <span class="marquee-dot">●</span> 整骨院 <span class="marquee-dot">●</span> 不動産 <span class="marquee-dot">●</span> 相談無料 <span class="marquee-dot">●</span></div>
+    <div class="marquee-item">Web Design <span class="marquee-dot">●</span> Landing Page <span class="marquee-dot">●</span> Corporate Site <span class="marquee-dot">●</span> 業務自動化 <span class="marquee-dot">●</span> DX化支援 <span class="marquee-dot">●</span> セキュリティ診断 <span class="marquee-dot">●</span> SEO対応 <span class="marquee-dot">●</span> オーダーメイド設計 <span class="marquee-dot">●</span> 美容院 <span class="marquee-dot">●</span> 工務店 <span class="marquee-dot">●</span> 飲食店 <span class="marquee-dot">●</span> 整骨院 <span class="marquee-dot">●</span> 不動産 <span class="marquee-dot">●</span> 相談無料 <span class="marquee-dot">●</span></div>
   </div>
 </div>
 
@@ -602,27 +601,37 @@
   <div class="about-grid fade-in">
     <div class="about-body">
       <p>
-        Tobiraは、<strong>ウェブサイト制作と業務自動化を軸にした</strong>デザイン＆テクノロジースタジオです。
+        Tobiraは、<strong>ウェブサイト制作と業務自動化をまとめて相談できる</strong>デザイン＆テクノロジースタジオです。
       </p>
       <p>
-        テンプレートを流用せず、業種・ターゲット・雰囲気をヒアリングした上で一から設計します。美容院・工務店・飲食店・整骨院など、業種は問いません。
+        最初に見るのは、デザインの雰囲気だけではありません。誰に来てほしいのか、何を伝えれば問い合わせにつながるのか、日々の作業でどこが詰まっているのかまで聞いたうえで設計します。
       </p>
       <p>
-        <strong>見た目が良くて検索にも強い</strong>サイト制作に加え、<strong>業務の自動化・DX化</strong>にも対応。「繰り返し作業を仕組みで回したい」というご相談も歓迎します。
+        サイトは名刺ではなく、<strong>お店や会社の入口</strong>です。文章、導線、検索される言葉、予約や問い合わせ後の流れまで整えることで、見た目だけで終わらないWebを目指します。
+      </p>
+      <p>
+        美容院・工務店・飲食店・整骨院など、業種は問いません。小さく始めたい制作も、繰り返し作業を仕組み化したいDXの相談も、事業の温度感に合わせて一緒に形にします。
       </p>
     </div>
-    <div class="about-stats">
-      <div class="stat-item">
-        <div class="stat-num">2週間</div>
-        <div class="stat-label">標準的な納期（LP・コーポレートサイト）</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">¥0</div>
-        <div class="stat-label">相談・お見積もり料金</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">スマートフォン対応・全案件</div>
+    <div class="about-note">
+      <div class="about-note-title">設計で見るところ</div>
+      <div class="about-note-list">
+        <div class="about-note-item">
+          <div class="about-note-key">伝わること</div>
+          <div class="about-note-text">初めて見た人が、何を頼める場所なのかすぐ分かるか。</div>
+        </div>
+        <div class="about-note-item">
+          <div class="about-note-key">選ばれる理由</div>
+          <div class="about-note-text">価格・技術・人柄・実績など、比較された時に残る強みは何か。</div>
+        </div>
+        <div class="about-note-item">
+          <div class="about-note-key">探され方</div>
+          <div class="about-note-text">地域名、業種名、悩みの言葉から自然に見つけてもらえるか。</div>
+        </div>
+        <div class="about-note-item">
+          <div class="about-note-key">手放せる作業</div>
+          <div class="about-note-text">予約、問い合わせ、集計、返信など、仕組みに任せられる作業はないか。</div>
+        </div>
       </div>
     </div>
   </div>
