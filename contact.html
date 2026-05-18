@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Tobira</title>
+  <meta name="description" content="Tobiraへのお問い合わせ。相談・見積もりは無料です。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#090909;--bg2:#101010;--bg3:#161616;--border:rgba(255,255,255,0.07);--text:#d4d4d4;--muted:#787878;--muted2:#a0a0a0;--accent:#c9a96e;--white:#f2f2f2;--mono:'Inter',sans-serif;--sans:'Noto Sans JP','Inter',sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;cursor:none; }
+    .grain { position:fixed;inset:-200%;width:500%;height:500%;background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='1'/></svg>");opacity:0.028;pointer-events:none;z-index:9998;animation:grain 7s steps(10) infinite; }
+    @keyframes grain { 0%{transform:translate(0,0)}10%{transform:translate(-3%,-8%)}25%{transform:translate(-12%,5%)}37%{transform:translate(6%,-20%)}50%{transform:translate(-4%,20%)}62%{transform:translate(-12%,8%)}75%{transform:translate(12%,-2%)}87%{transform:translate(2%,14%)} }
+    .cursor { position:fixed;width:7px;height:7px;background:var(--white);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .18s,height .18s;mix-blend-mode:difference; }
+    .cursor-ring { position:fixed;width:38px;height:38px;border:1px solid rgba(255,255,255,0.2);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s,left .08s linear,top .08s linear; }
+    .cursor.grow { width:14px;height:14px; } .cursor-ring.grow { width:58px;height:58px;border-color:rgba(201,169,110,0.35); }
+    @media (max-width:768px) { .cursor,.cursor-ring { display:none; } }
+    nav { position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3rem;transition:border-color .4s,background .4s;border-bottom:1px solid transparent; }
+    nav.scrolled { background:rgba(9,9,9,.9);backdrop-filter:blur(18px);border-color:var(--border); }
+    .nav-logo { font-family:var(--mono);font-size:1rem;font-weight:500;letter-spacing:.08em;color:var(--white);text-decoration:none; }
+    .nav-logo span { font-size:.58rem;font-weight:300;letter-spacing:.22em;color:var(--muted);margin-left:.7rem;text-transform:uppercase;vertical-align:middle; }
+    .nav-links { display:flex;gap:2.2rem;list-style:none; }
+    .nav-links a { font-size:.71rem;letter-spacing:.13em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s; }
+    .nav-links a:hover,.nav-links a.active { color:var(--white); }
+    @media (max-width:768px) { nav { padding:1.2rem 1.5rem; } .nav-links { display:none; } }
+    section { padding:10rem 3rem 8rem; }
+    .section-label { font-family:var(--mono);font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem; }
+    .section-title { font-size:clamp(1.9rem,4vw,3.1rem);font-weight:300;color:var(--white);letter-spacing:-.025em;margin-bottom:4rem;line-height:1.15; }
+    .fade-in { opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease; }
+    .fade-in.visible { opacity:1;transform:none; }
+    .contact-wrap { max-width:600px; }
+    .contact-lead { font-size:.94rem;color:var(--muted2);line-height:2.05;margin-bottom:3rem; }
+    .form-row { margin-bottom:1.4rem; }
+    .form-row label { display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);margin-bottom:.55rem; }
+    .form-row input,.form-row select,.form-row textarea { width:100%;background:transparent;border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:.87rem;font-weight:300;padding:.9rem 1.1rem;outline:none;transition:border-color .25s;-webkit-appearance:none;border-radius:0; }
+    .form-row input:focus,.form-row select:focus,.form-row textarea:focus { border-color:rgba(255,255,255,.28); }
+    .form-row textarea { min-height:120px;resize:vertical; }
+    .form-row select option { background:#1a1a1a; }
+    .form-two { display:grid;grid-template-columns:1fr 1fr;gap:1.1rem; }
+    .submit-btn { display:inline-flex;align-items:center;gap:.9rem;padding:1.05rem 2.7rem;background:var(--white);color:var(--bg);font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:none;transition:background .25s,color .25s,transform .2s;margin-top:.5rem; }
+    .submit-btn:hover { background:var(--accent);color:var(--bg);transform:translateY(-2px); }
+    @media (max-width:768px) { .form-two { grid-template-columns:1fr; } section { padding:7rem 1.5rem 5rem; } .submit-btn { cursor:pointer; } }
+    footer { padding:2.2rem 3rem 1.2rem;border-top:1px solid var(--border); }
+    .footer-main { display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1.4rem; }
+    .footer-brand { font-family:var(--mono);font-size:.88rem;font-weight:500;color:var(--white); }
+    .footer-links { display:flex;gap:1.7rem;align-items:center; }
+    .footer-links a { font-family:var(--mono);font-size:.65rem;letter-spacing:.11em;color:var(--muted);text-decoration:none;transition:color .2s; }
+    .footer-links a:hover { color:var(--white); }
+    .footer-copy { font-family:var(--mono);font-size:.58rem;color:#282828;margin-top:.5rem; }
+    @media (max-width:768px) { footer { padding:2rem 1.5rem 1rem; } .footer-main { flex-direction:column;align-items:flex-start; } }
+  </style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav id="nav">
+  <a class="nav-logo" href="/">Tobira<span>Web Design</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="services/web.html">Services</a></li>
+    <li><a href="works.html">Works</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+<section>
+  <div class="fade-in">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">お問い合わせ</h2>
+  </div>
+  <div class="contact-wrap fade-in">
+    <p class="contact-lead">
+      まずは無料相談から。<br>
+      「ウェブサイトをどうすれば良いかわからない」というご相談も大歓迎です。<br>
+      他社見積もりがある場合は、内容を見たうえで価格調整も検討します。<br>
+      通常2営業日以内にご返信します。
+    </p>
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="effabb99-c5a7-44bb-aa2b-d1ef49447573">
+      <input type="hidden" name="subject" value="新しいお問い合わせ — Tobira">
+      <input type="hidden" name="from_name" value="Tobira お問い合わせフォーム">
+      <div class="form-two">
+        <div class="form-row"><label>お名前 *</label><input type="text" name="name" required placeholder="田中 太郎"></div>
+        <div class="form-row"><label>業種</label><input type="text" name="industry" placeholder="例：美容院"></div>
+      </div>
+      <div class="form-row"><label>メールアドレス *</label><input type="email" name="email" required placeholder="example@email.com"></div>
+      <div class="form-row">
+        <label>ご相談内容</label>
+        <select name="service">
+          <option value="">選択してください</option>
+          <option>ランディングページを作りたい</option>
+          <option>コーポレートサイトを作りたい</option>
+          <option>今のサイトをリニューアルしたい</option>
+          <option>セキュリティ診断をしたい</option>
+          <option>業務を自動化したい（DX化）</option>
+          <option>まずは相談だけしたい</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="form-row"><label>メッセージ</label><textarea name="message" placeholder="ご要望・ご質問などをお気軽にどうぞ"></textarea></div>
+      <button type="submit" class="submit-btn">
+        送信する
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">Tobira</div>
+    <div class="footer-links">
+      <a href="mailto:tobira.webdesign@gmail.com">Email</a>
+      <a href="contact.html">Contact</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Tobira</div>
+</footer>
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{ nav.classList.toggle('scrolled',window.scrollY>40); });
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.08});
+  document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  if(cursor&&ring){let mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});(function loop(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;cursor.style.left=mx+'px';cursor.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.classList.add('grow');ring.classList.add('grow');});el.addEventListener('mouseleave',()=>{cursor.classList.remove('grow');ring.classList.remove('grow');});});document.addEventListener('mouseleave',()=>{cursor.style.opacity='0';ring.style.opacity='0';});document.addEventListener('mouseenter',()=>{cursor.style.opacity='1';ring.style.opacity='1';});}
+</script>
+</body>
+</html>

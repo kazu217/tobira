@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Tobira</title>
+  <meta name="description" content="TobiraはWeb制作と業務自動化を軸にしたデザイン＆テクノロジースタジオです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#090909;--bg2:#101010;--bg3:#161616;--border:rgba(255,255,255,0.07);--text:#d4d4d4;--muted:#787878;--muted2:#a0a0a0;--accent:#c9a96e;--white:#f2f2f2;--mono:'Inter',sans-serif;--sans:'Noto Sans JP','Inter',sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;cursor:none; }
+    .grain { position:fixed;inset:-200%;width:500%;height:500%;background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='1'/></svg>");opacity:0.028;pointer-events:none;z-index:9998;animation:grain 7s steps(10) infinite; }
+    @keyframes grain { 0%{transform:translate(0,0)}10%{transform:translate(-3%,-8%)}25%{transform:translate(-12%,5%)}37%{transform:translate(6%,-20%)}50%{transform:translate(-4%,20%)}62%{transform:translate(-12%,8%)}75%{transform:translate(12%,-2%)}87%{transform:translate(2%,14%)} }
+    .cursor { position:fixed;width:7px;height:7px;background:var(--white);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .18s,height .18s;mix-blend-mode:difference; }
+    .cursor-ring { position:fixed;width:38px;height:38px;border:1px solid rgba(255,255,255,0.2);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s,left .08s linear,top .08s linear; }
+    .cursor.grow { width:14px;height:14px; } .cursor-ring.grow { width:58px;height:58px;border-color:rgba(201,169,110,0.35); }
+    @media (max-width:768px) { .cursor,.cursor-ring { display:none; } }
+    nav { position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3rem;transition:border-color .4s,background .4s;border-bottom:1px solid transparent; }
+    nav.scrolled { background:rgba(9,9,9,.9);backdrop-filter:blur(18px);border-color:var(--border); }
+    .nav-logo { font-family:var(--mono);font-size:1rem;font-weight:500;letter-spacing:.08em;color:var(--white);text-decoration:none; }
+    .nav-logo span { font-size:.58rem;font-weight:300;letter-spacing:.22em;color:var(--muted);margin-left:.7rem;text-transform:uppercase;vertical-align:middle; }
+    .nav-links { display:flex;gap:2.2rem;list-style:none; }
+    .nav-links a { font-size:.71rem;letter-spacing:.13em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s; }
+    .nav-links a:hover,.nav-links a.active { color:var(--white); }
+    @media (max-width:768px) { nav { padding:1.2rem 1.5rem; } .nav-links { display:none; } }
+    section { padding:10rem 3rem 8rem; }
+    .section-label { font-family:var(--mono);font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem; }
+    .section-title { font-size:clamp(1.9rem,4vw,3.1rem);font-weight:300;color:var(--white);letter-spacing:-.025em;margin-bottom:4rem;line-height:1.15; }
+    .fade-in { opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease; }
+    .fade-in.visible { opacity:1;transform:none; }
+    .about-grid { display:grid;grid-template-columns:1.3fr .7fr;gap:7rem;max-width:1040px; }
+    .about-body { font-size:.94rem;color:#b0b0b0;line-height:2.2; }
+    .about-body p+p { margin-top:1.4rem; }
+    .about-body strong { color:var(--white);font-weight:400; }
+    .about-stats { display:flex;flex-direction:column; }
+    .stat-item { border-top:1px solid var(--border);padding:1.8rem 0; }
+    .stat-num { font-family:var(--mono);font-size:2.4rem;font-weight:200;color:var(--white);letter-spacing:-.04em;line-height:1;margin-bottom:.4rem; }
+    .stat-label { font-size:.73rem;color:var(--muted);letter-spacing:.07em; }
+    @media (max-width:768px) { .about-grid { grid-template-columns:1fr;gap:3.5rem; } section { padding:7rem 1.5rem 5rem; } }
+    footer { padding:2.2rem 3rem 1.2rem;border-top:1px solid var(--border); }
+    .footer-main { display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1.4rem; }
+    .footer-brand { font-family:var(--mono);font-size:.88rem;font-weight:500;color:var(--white); }
+    .footer-links { display:flex;gap:1.7rem;align-items:center; }
+    .footer-links a { font-family:var(--mono);font-size:.65rem;letter-spacing:.11em;color:var(--muted);text-decoration:none;transition:color .2s; }
+    .footer-links a:hover { color:var(--white); }
+    .footer-copy { font-family:var(--mono);font-size:.58rem;color:#282828;margin-top:.5rem; }
+    @media (max-width:768px) { footer { padding:2rem 1.5rem 1rem; } .footer-main { flex-direction:column;align-items:flex-start; } }
+  </style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav id="nav">
+  <a class="nav-logo" href="/">Tobira<span>Web Design</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services/web.html">Services</a></li>
+    <li><a href="works.html">Works</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+<section>
+  <div class="fade-in">
+    <p class="section-label">About</p>
+    <h2 class="section-title">Tobiraについて</h2>
+  </div>
+  <div class="about-grid fade-in">
+    <div class="about-body">
+      <p>Tobiraは、<strong>ウェブサイト制作と業務自動化を軸にした</strong>デザイン＆テクノロジースタジオです。</p>
+      <p>テンプレートを流用せず、業種・ターゲット・雰囲気をヒアリングした上で一から設計します。美容院・工務店・飲食店・整骨院など、業種は問いません。</p>
+      <p><strong>見た目が良くて検索にも強い</strong>サイト制作に加え、<strong>業務の自動化・DX化</strong>にも対応。「繰り返し作業を仕組みで回したい」というご相談も歓迎します。</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-item"><div class="stat-num">2週間</div><div class="stat-label">標準的な納期（LP・コーポレートサイト）</div></div>
+      <div class="stat-item"><div class="stat-num">¥0</div><div class="stat-label">相談・お見積もり料金</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">スマートフォン対応・全案件</div></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">Tobira</div>
+    <div class="footer-links">
+      <a href="mailto:tobira.webdesign@gmail.com">Email</a>
+      <a href="contact.html">Contact</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Tobira</div>
+</footer>
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+  const io = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+  const cursor = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+  if (cursor && ring) {
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+    (function loop(){ rx+=(mx-rx)*.14; ry+=(my-ry)*.14; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
+    document.querySelectorAll('a,button').forEach(el => { el.addEventListener('mouseenter',()=>{cursor.classList.add('grow');ring.classList.add('grow');}); el.addEventListener('mouseleave',()=>{cursor.classList.remove('grow');ring.classList.remove('grow');}); });
+    document.addEventListener('mouseleave',()=>{cursor.style.opacity='0';ring.style.opacity='0';});
+    document.addEventListener('mouseenter',()=>{cursor.style.opacity='1';ring.style.opacity='1';});
+  }
+</script>
+</body>
+</html>
